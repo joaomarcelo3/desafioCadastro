@@ -1,7 +1,6 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,12 +12,12 @@ public class GerenciadorArquivo {
         File file = new File("src\\relatorios\\formulario.txt").getAbsoluteFile();
         Scanner scanner = new Scanner(System.in);
 
-        try(BufferedReader bw = new BufferedReader(new FileReader(file));){
+        try(BufferedReader br = new BufferedReader(new FileReader(file))){
             
             String pergunta;
             List<String> respostas = new ArrayList<>();
 
-            while ((pergunta = bw.readLine()) != null ){
+            while ((pergunta = br.readLine()) != null ){
                 
                 System.out.println(pergunta);
                 
@@ -31,5 +30,39 @@ public class GerenciadorArquivo {
             e.printStackTrace();
         }
         
+    }
+
+    public void salvarPet(Pet pet){
+
+        LocalDateTime data = LocalDateTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");
+        String dataFormatada = data.format(formato);
+
+        String nomePetFormatado = pet.getNomePet().toUpperCase().replace(" ", "");
+
+        File file = new File("src\\petsCadastrados\\" + dataFormatada
+                + "-" + nomePetFormatado + ".TXT").getAbsoluteFile();
+        file.getParentFile().mkdirs();
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))){
+
+            bw.write(pet.getNomePet());
+            bw.newLine();
+            bw.write(pet.getTipoPet());
+            bw.newLine();
+            bw.write(pet.getSexoPet());
+            bw.newLine();
+            bw.write(pet.getEnderecoEncontradoPet());
+            bw.newLine();
+            bw.write(Integer.toString(pet.getIdadePet()));
+            bw.newLine();
+            bw.write(pet.getPesoPet());
+            bw.newLine();
+            bw.write(pet.getRacaPet());
+
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }
 }

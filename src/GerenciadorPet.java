@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GerenciadorPet {
-
+    GerenciadorArquivo gerenciadorArquivo = new GerenciadorArquivo();
     private List<Pet> pets;
 
     public GerenciadorPet(){
@@ -22,6 +22,7 @@ public class GerenciadorPet {
             respostas.get(6));
 
         pets.add(pet);
+        gerenciadorArquivo.salvarPet(pet);
 
     }
 

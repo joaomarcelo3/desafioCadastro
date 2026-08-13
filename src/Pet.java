@@ -8,8 +8,14 @@ public class Pet {
     private String pesoPet;
     private String racaPet;
 
-    public Pet(String nomePet, String tipoPet, String sexoPet, 
-    String enderecoEncontradoPet, int idadePet,String pesoPet, String racaPet) {
+    public Pet(String nomePet,
+               String tipoPet,
+               String sexoPet,
+               String enderecoEncontradoPet,
+               int idadePet,
+               String pesoPet,
+               String racaPet)
+    {
         this.nomePet = nomePet;
         this.TipoPet = tipoPet;
         this.sexoPet = sexoPet;
@@ -79,12 +85,12 @@ public class Pet {
     public String toString() {
         return "==== DADOS DO PET ====:\n" +
                 "Nome: " + nomePet +"\n"+
-                ", Tipo: " + TipoPet + "\n"+
-                ", Sexo: " + sexoPet + "\n"+
-                ", Endereço Encontrado: " + enderecoEncontradoPet + "\n" +
-                ", Idade do Pet: " + idadePet + "\n"+
-                ", Peso: " + pesoPet + "\n"+
-                ", racaPet: " + racaPet + "\n" +
+                "Tipo: " + TipoPet + "\n"+
+                "Sexo: " + sexoPet + "\n"+
+                "Endereço Encontrado: " + enderecoEncontradoPet + "\n" +
+                "Idade do Pet: " + idadePet + "\n"+
+                "Peso: " + pesoPet + "\n"+
+                "Raça do Pet: " + racaPet + "\n" +
                 "======================";
     }
     
