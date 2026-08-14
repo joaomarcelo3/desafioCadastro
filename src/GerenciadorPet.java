@@ -10,16 +10,22 @@ public class GerenciadorPet {
         this.pets = new ArrayList<>();
     }
 
-    public void cadastrarPet(List<String> respostas) throws IOException{
+    public void cadastrarPet(List<String> respostas) throws IOException {
+
+        String resposta1 = respostas.get(1);
+        tipoPetEnum tipo = tipoPetEnum.valueOf(resposta1.toUpperCase());
+
+        String resposta2 = respostas.get(2);
+        sexoPetEnum sexo = sexoPetEnum.valueOf(resposta2.toUpperCase());
 
         Pet pet = new Pet(
-            respostas.get(0), 
-            respostas.get(1), 
-            respostas.get(2), 
-            respostas.get(3), 
-            Integer.parseInt(respostas.get(4)),  
-            respostas.get(5),
-            respostas.get(6));
+                respostas.get(0),
+                tipo,
+                sexo,
+                respostas.get(3),
+                Integer.parseInt(respostas.get(4)),
+                respostas.get(5),
+                respostas.get(6));
 
         pets.add(pet);
         gerenciadorArquivo.salvarPet(pet);

@@ -1,23 +1,17 @@
 public class Pet {
 
     private String nomePet;
-    private String TipoPet;
-    private String sexoPet;
+    private tipoPetEnum tipoPet;
+    private sexoPetEnum sexoPet;
     private String enderecoEncontradoPet;
     private int idadePet;
     private String pesoPet;
     private String racaPet;
 
-    public Pet(String nomePet,
-               String tipoPet,
-               String sexoPet,
-               String enderecoEncontradoPet,
-               int idadePet,
-               String pesoPet,
-               String racaPet)
+    public Pet(String nomePet, tipoPetEnum tipoPet, sexoPetEnum sexoPet, String enderecoEncontradoPet, int idadePet, String pesoPet, String racaPet)
     {
         this.nomePet = nomePet;
-        this.TipoPet = tipoPet;
+        this.tipoPet = tipoPet;
         this.sexoPet = sexoPet;
         this.enderecoEncontradoPet = enderecoEncontradoPet;
         this.idadePet = idadePet;
@@ -33,19 +27,19 @@ public class Pet {
         this.nomePet = nomePet;
     }
 
-    public String getTipoPet() {
-        return TipoPet;
+    public tipoPetEnum getTipoPet() {
+        return tipoPet;
     }
 
-    public void setTipoPet(String tipoPet) {
-        TipoPet = tipoPet;
+    public void setTipoPet(tipoPetEnum tipoPet) {
+        this.tipoPet = tipoPet;
     }
 
-    public String getSexoPet() {
+    public sexoPetEnum getSexoPet() {
         return sexoPet;
     }
 
-    public void setSexoPet(String sexoPet) {
+    public void setSexoPet(sexoPetEnum sexoPet) {
         this.sexoPet = sexoPet;
     }
 
@@ -85,7 +79,7 @@ public class Pet {
     public String toString() {
         return "==== DADOS DO PET ====:\n" +
                 "Nome: " + nomePet +"\n"+
-                "Tipo: " + TipoPet + "\n"+
+                "Tipo: " + tipoPet + "\n"+
                 "Sexo: " + sexoPet + "\n"+
                 "Endereço Encontrado: " + enderecoEncontradoPet + "\n" +
                 "Idade do Pet: " + idadePet + "\n"+

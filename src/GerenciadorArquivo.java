@@ -40,17 +40,16 @@ public class GerenciadorArquivo {
 
         String nomePetFormatado = pet.getNomePet().toUpperCase().replace(" ", "");
 
-        File file = new File("src\\petsCadastrados\\" + dataFormatada
-                + "-" + nomePetFormatado + ".TXT").getAbsoluteFile();
+        File file = new File("src\\petsCadastrados\\" + dataFormatada + "-" + nomePetFormatado + ".TXT").getAbsoluteFile();
         file.getParentFile().mkdirs();
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))){
 
             bw.write(pet.getNomePet());
             bw.newLine();
-            bw.write(pet.getTipoPet());
+            bw.write(pet.getTipoPet().name());
             bw.newLine();
-            bw.write(pet.getSexoPet());
+            bw.write(pet.getSexoPet().name());
             bw.newLine();
             bw.write(pet.getEnderecoEncontradoPet());
             bw.newLine();
@@ -59,6 +58,7 @@ public class GerenciadorArquivo {
             bw.write(pet.getPesoPet());
             bw.newLine();
             bw.write(pet.getRacaPet());
+            bw.flush();
 
         }
         catch(IOException e){
