@@ -16,9 +16,9 @@ public class Menu {
         while (continuar) {
 
             try(BufferedReader br = new BufferedReader(new FileReader(file))){
-                String pergunta;
-                while ((pergunta = br.readLine()) != null ){
-                    System.out.println(pergunta);
+                String menuInicial;
+                while ((menuInicial = br.readLine()) != null ){
+                    System.out.println(menuInicial);
 
                 }
 
@@ -38,7 +38,9 @@ public class Menu {
                     gerenciadorPet.listarTodosPet();
                         break;
                     case 5:
-                    gerenciadorPet.listarPetCriterio();
+                        System.out.println("Digite o nome do pet que você quer procurar: ");
+                        String textoBuscado = scanner.nextLine();
+                        gerenciadorPet.listarPetCriterio(textoBuscado);
                         break;
                     case 6:
                     continuar = false;

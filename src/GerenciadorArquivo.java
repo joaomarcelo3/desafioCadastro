@@ -13,23 +13,38 @@ public class GerenciadorArquivo {
         Scanner scanner = new Scanner(System.in);
 
         try(BufferedReader br = new BufferedReader(new FileReader(file))){
-            
+
             String pergunta;
+            int indice = 0;
+            sexoPetEnum sexo = null;
+            tipoPetEnum tipo = null;
             List<String> respostas = new ArrayList<>();
 
-            while ((pergunta = br.readLine()) != null ){
-                
+            while ((pergunta = br.readLine()) != null ) {
+
                 System.out.println(pergunta);
-                
+
                 String resposta = scanner.nextLine();
                 respostas.add(resposta);
+                try {
+
+                    if (indice == 1) {
+                        tipo = tipoPetEnum.valueOf(respostas.get(1).toUpperCase());
+                    }
+                    if (indice == 2) {
+                        sexo = sexoPetEnum.valueOf(respostas.get(2).toUpperCase());
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                indice++;
             }
-            gPet.cadastrarPet(respostas);
-            
+                gPet.cadastrarPet(respostas, tipo, sexo);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
     }
 
     public void salvarPet(Pet pet){
