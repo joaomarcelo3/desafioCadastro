@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class GerenciadorPet {
@@ -9,7 +8,7 @@ public class GerenciadorPet {
     Scanner scanner = new Scanner(System.in);
     private List<Pet> pets;
 
-    public GerenciadorPet(){
+    public GerenciadorPet() {
         this.pets = new ArrayList<>();
     }
 
@@ -25,13 +24,34 @@ public class GerenciadorPet {
                 respostas.get(6));
 
         pets.add(pet);
-        gerenciadorArquivo.salvarPet(pet);
+        gerenciadorArquivo.salvarArquivoPet(pet);
 
     }
 
-    public void alterarPet() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'alterarPet'");
+    public void alterarPet(int index, List<Pet> resultado) {
+            Pet petParaAlterar = resultado.get(index);
+
+            System.out.println("Novo nome: ");
+            String novoNome = scanner.nextLine();
+            petParaAlterar.setNomePet(novoNome);
+
+            System.out.println("Novo endereço: ");
+            String novoEndereco = scanner.nextLine();
+            petParaAlterar.setEnderecoEncontradoPet(novoEndereco);
+
+            System.out.println("Nova idade: ");
+            int novaIdade = Integer.parseInt(scanner.nextLine());
+            petParaAlterar.setIdadePet(novaIdade);
+
+            System.out.println("Novo peso: ");
+            String novoPeso = scanner.nextLine();
+            petParaAlterar.setPesoPet(novoPeso);
+
+            System.out.println("Nova raça: ");
+            String novaRaca = scanner.nextLine();
+            petParaAlterar.setRacaPet(novaRaca);
+
+            System.out.println("Pet alterado com sucesso!");
     }
 
     public void deletarPet() {
@@ -40,9 +60,10 @@ public class GerenciadorPet {
     }
 
     public void listarTodosPet() {
-        System.out.println(pets.size());
+        int indice = 0;
         for (Pet pet : pets) {
-            System.out.println(pet.toString());
+            indice++;
+            System.out.println(indice + ". " + pet.toString());
         }
     }
 
@@ -54,12 +75,24 @@ public class GerenciadorPet {
             if (pet.getNomePet().toUpperCase().contains(textoBuscado.toUpperCase())) {
                 indice++;
                 listas.add(pet);
-                System.out.println(indice +"." + pet.toString());
+                System.out.println(indice + ". " + pet.toString());
             }
+            else if (Integer.toString(pet.getIdadePet()).equals(textoBuscado)) {
+                indice++;
+                listas.add(pet);
+                System.out.println(indice + ". " + pet.toString());
+            }
+            else if (pet.getRacaPet().toUpperCase().contains(textoBuscado.toUpperCase())) {
+                indice++;
+                listas.add(pet);
+                System.out.println(indice + ". " + pet.toString());
+            }
+        }
+        if (listas.isEmpty()){
+            System.out.println("Pet não encontrado!");
         }
         return listas;
     }
-
-    
-    
 }
+
+

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class GerenciadorArquivo {
    
-    public void lerArquivo(GerenciadorPet gPet){
+    public void lerArquivoPet(GerenciadorPet gPet){
 
         File file = new File("src\\relatorios\\formulario.txt").getAbsoluteFile();
         Scanner scanner = new Scanner(System.in);
@@ -47,7 +47,7 @@ public class GerenciadorArquivo {
 
     }
 
-    public void salvarPet(Pet pet){
+    public void salvarArquivoPet(Pet pet){
 
         LocalDateTime data = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");

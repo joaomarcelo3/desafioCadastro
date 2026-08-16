@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -26,26 +27,38 @@ public class Menu {
 
                 switch (opcao) {
                     case 1:
-                        gerenciadorArq.lerArquivo(gerenciadorPet);
+                        gerenciadorArq.lerArquivoPet(gerenciadorPet);
                         break;
+
                     case 2:
-                    gerenciadorPet.alterarPet();
+                        System.out.println("Digite algum critério do pet (nome, idade, raça) que você quer alterar: ");
+                        String textoBuscadoParaAlterar = scanner.nextLine();
+                        List<Pet> resultado = gerenciadorPet.listarPetCriterio(textoBuscadoParaAlterar);
+                        System.out.println("Digite o index do pet: ");
+                        int index = 1;
+                        index = scanner.nextInt() - index;
+                        gerenciadorPet.alterarPet(index, resultado);
                         break;
+
                     case 3:
                     gerenciadorPet.deletarPet();
                         break;
+
                     case 4:
                     gerenciadorPet.listarTodosPet();
                         break;
+
                     case 5:
-                        System.out.println("Digite o nome do pet que você quer procurar: ");
+                        System.out.println("Digite algum critério do pet (nome, idade, raça) que você quer procurar: ");
                         String textoBuscado = scanner.nextLine();
                         gerenciadorPet.listarPetCriterio(textoBuscado);
                         break;
+
                     case 6:
                     continuar = false;
                     System.out.println("Saindo...");
                         break;
+
                     default:
                     System.out.println("Opção inválida, tente novamente!");
                 }

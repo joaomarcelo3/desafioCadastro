@@ -75,17 +75,11 @@ public class Pet {
         this.racaPet = racaPet;
     }
 
+
     @Override
     public String toString() {
-        return "==== DADOS DO PET ====:\n" +
-                "Nome: " + nomePet +"\n"+
-                "Tipo: " + tipoPet + "\n"+
-                "Sexo: " + sexoPet + "\n"+
-                "Endereço Encontrado: " + enderecoEncontradoPet + "\n" +
-                "Idade do Pet: " + idadePet + "\n"+
-                "Peso: " + pesoPet + "\n"+
-                "Raça do Pet: " + racaPet + "\n" +
-                "======================";
+        return getNomePet() + " - " + getTipoPet() + " - " + getSexoPet() + " - " +
+                getEnderecoEncontradoPet() + " - " + getIdadePet() + " - " +
+                getPesoPet() + " - " + getRacaPet();
     }
-    
 }
