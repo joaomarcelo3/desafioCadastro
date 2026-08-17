@@ -1,4 +1,4 @@
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,6 +10,7 @@ public class GerenciadorPet {
 
     public GerenciadorPet() {
         this.pets = new ArrayList<>();
+        gerenciadorArquivo.carregarPetsSalvos(this);
     }
 
     public void cadastrarPet(List<String> respostas, tipoPetEnum tipo, sexoPetEnum sexo) throws IOException {
@@ -24,34 +25,34 @@ public class GerenciadorPet {
                 respostas.get(6));
 
         pets.add(pet);
-        gerenciadorArquivo.salvarArquivoPet(pet);
+        gerenciadorArquivo.escreverArquivoPet(pet);
 
     }
 
     public void alterarPet(int index, List<Pet> resultado) {
             Pet petParaAlterar = resultado.get(index);
 
-            System.out.println("Novo nome: ");
+            System.out.print("Novo nome: ");
             String novoNome = scanner.nextLine();
             petParaAlterar.setNomePet(novoNome);
 
-            System.out.println("Novo endereço: ");
+            System.out.print("Novo endereço: ");
             String novoEndereco = scanner.nextLine();
             petParaAlterar.setEnderecoEncontradoPet(novoEndereco);
 
-            System.out.println("Nova idade: ");
+            System.out.print("Nova idade: ");
             int novaIdade = Integer.parseInt(scanner.nextLine());
             petParaAlterar.setIdadePet(novaIdade);
 
-            System.out.println("Novo peso: ");
+            System.out.print("Novo peso: ");
             String novoPeso = scanner.nextLine();
             petParaAlterar.setPesoPet(novoPeso);
 
-            System.out.println("Nova raça: ");
+            System.out.print("Nova raça: ");
             String novaRaca = scanner.nextLine();
             petParaAlterar.setRacaPet(novaRaca);
 
-            System.out.println("Pet alterado com sucesso!");
+            System.out.print("Pet alterado com sucesso!");
     }
 
     public void deletarPet() {
@@ -60,10 +61,9 @@ public class GerenciadorPet {
     }
 
     public void listarTodosPet() {
-        int indice = 0;
+
         for (Pet pet : pets) {
-            indice++;
-            System.out.println(indice + ". " + pet.toString());
+            System.out.println(pet.toString());
         }
     }
 
@@ -92,6 +92,10 @@ public class GerenciadorPet {
             System.out.println("Pet não encontrado!");
         }
         return listas;
+    }
+
+    public void adicionarPetExistente(Pet pet) {
+        pets.add(pet);
     }
 }
 

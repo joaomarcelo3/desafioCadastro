@@ -41,13 +41,14 @@ public class GerenciadorArquivo {
             }
                 gPet.cadastrarPet(respostas, tipo, sexo);
 
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
-    public void salvarArquivoPet(Pet pet){
+    public void escreverArquivoPet(Pet pet){
 
         LocalDateTime data = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");
@@ -79,5 +80,51 @@ public class GerenciadorArquivo {
         catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void carregarPetsSalvos(GerenciadorPet gPet){
+        File pasta = new File("src\\petsCadastrados").getAbsoluteFile();
+        File[] arquivos = pasta.listFiles(); // retorna um array de File[], já com objetos File completos
+
+        for(File arquivo  : arquivos)
+            try (BufferedReader br = new BufferedReader(new FileReader(arquivo))) {
+
+                List<String> respostas = new ArrayList<>();
+                int indice = 0;
+                tipoPetEnum tipo = null;
+                sexoPetEnum sexo = null;
+
+                String linha;
+                while ((linha = br.readLine()) != null ){
+                    respostas.add(linha);
+
+                    try {
+
+                        if (indice == 1) {
+                            tipo = tipoPetEnum.valueOf(respostas.get(1).toUpperCase());
+                        }
+                        if (indice == 2) {
+                            sexo = sexoPetEnum.valueOf(respostas.get(2).toUpperCase());
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    indice++;
+
+                }
+                Pet pet = new Pet(
+                        respostas.get(0),
+                        tipo,
+                        sexo,
+                        respostas.get(3),
+                        Integer.parseInt(respostas.get(4)),
+                        respostas.get(5),
+                        respostas.get(6));
+
+                gPet.adicionarPetExistente(pet);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
     }
 }

@@ -31,12 +31,13 @@ public class Menu {
                         break;
 
                     case 2:
-                        System.out.println("Digite algum critério do pet (nome, idade, raça) que você quer alterar: ");
+                        System.out.println("Digite o nome do pet que você quer alterar: ");
                         String textoBuscadoParaAlterar = scanner.nextLine();
                         List<Pet> resultado = gerenciadorPet.listarPetCriterio(textoBuscadoParaAlterar);
+
                         System.out.println("Digite o index do pet: ");
-                        int index = 1;
-                        index = scanner.nextInt() - index;
+                        int index = Integer.parseInt(scanner.nextLine()) - 1;
+
                         gerenciadorPet.alterarPet(index, resultado);
                         break;
 
